@@ -1,74 +1,63 @@
-# GZLib Shelf Finder (Guangzhou Library Shelf Finder)
+# GZLib Shelf Finder
 
-快速定位广州图书馆联合目录 OPAC 的馆藏位置信息（shelf / bookcase / floor），支持多本同时查和可借优先排序。适合个人快速查找/整理书单。
+Guangzhou Library shelf address finder (local web UI). 通过广州图书馆联合目录 OPAC 进行馆藏位置查询，面向个人快速定位书架/书柜/楼层。
 
-## 设计目标
+## Features
+- 批量查询（一次查多本）
+- 多馆藏位置合并展示
+- 可借优先排序
+- 本地 SQLite 缓存，减少重复请求
+- 低依赖：HTML/CSS/JS + Python 标准库 HTTP server
 
-- **多本/批量搜索**：一次搜索多本书，减少重复查找
-- **位置信息更友好**：同一本书可能存在多个馆藏位置，统一展示
-- **可借优先**：优先把当前可借的条目排前
-- **离线缓存**：本地 SQLite 缓存，尽量减少对上游系统的重复请求
-- **低依赖**：前端纯 HTML/CSS/JS + Python 标准库 HTTP 服务
+## Dependencies / 环境要求
+- Node.js 18/20（含 npm）
+- Python 3.10+
+- SQLite（随 Python 标准库）
+- requirements.txt 当前无额外 pip 包（未来新增依赖可直接 pip 安装）
 
-## 项目结构
-
-- `index.html`：页面结构
-- `styles.css`：界面样式
-- `app.js`：前端交互与请求
-- `server.py`：后端代理、查询与缓存
-- `data/`：运行时缓存目录（运行后自动生成，可自行清理）
-
-## 快速开始
-
-### 1) 安装依赖
-
+## One-click install
 ```bash
-npm install
+./setup.sh
+```
+（Windows 可执行 `bash setup.sh`）
+
+## Run
+建议分两个终端运行：
+
+后端服务：
+```bash
+source .venv/bin/activate
+python server.py
 ```
 
-### 2) 本地启动
-
-> 默认监听：`http://127.0.0.1:8011`
-
-Node 启动（推荐）：
-
+前端：
 ```bash
 npm start
 ```
 
-或手动运行 Python 服务：
+访问：`http://127.0.0.1:8011`
 
-```bash
-python server.py
+## Project structure
+```
+assets/
+data/              # 运行时缓存（可清理）
+index.html
+styles.css
+app.js
+server.py
+setup.sh
+requirements.txt
+README.md
 ```
 
-打开浏览器访问：
-
-```
-http://127.0.0.1:8011
-```
-
-## 配置（可选）
-
-### 代理池
-
-通过环境变量传入代理池：
-
-```bash
-export GZLIB_PROXY_POOL="http://127.0.0.1:7890,http://127.0.0.1:7891"
+## Screenshot（截图）
+将截图上传到 `assets/ui.png` 后，本节自动展示：
+```md
+![GZLib Shelf Finder UI](assets/ui.png)
 ```
 
-或创建 `proxy_pool.txt`：
-
-```text
-http://127.0.0.1:7890
-http://127.0.0.1:7891
-```
-
-## 免责声明
-
-本项目用于学习研究与个人自用查询，不保证任何数据的准确性或完整性。使用前请遵守目标网站/平台的条款与法律法规；对使用本项目造成的任何后果，作者不承担责任。
+## Disclaimer
+本项目仅用于学习与个人使用；请自行确保使用方式符合目标网站/服务条款与当地法律法规。
 
 ## License
-
 MIT
