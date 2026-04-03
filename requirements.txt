@@ -1,3 +1,12 @@
-# Python dependencies for GZLib Shelf Finder
-# This project primarily relies on the Python standard library (including sqlite3) and does not require third-party packages.
-# This file is kept to support installation scripts and future extensions.
+# GZLib Shelf Finder dependencies
+#
+# Toolchain (not installed via pip):
+#   - Node.js LTS (>=18, recommended 20) and npm
+#   - Python >=3.10
+#   - SQLite3 (bundled with Python standard library)
+#
+# Python pip packages:
+#   - none required currently (server uses only Python standard library)
+#
+# This file exists to keep install scripts stable and to allow adding pip
+# dependencies later without breaking automation.
