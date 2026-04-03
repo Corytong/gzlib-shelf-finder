@@ -1,0 +1,6 @@
+data/catalog_cache.sqlite3
+__pycache__/
+.DS_Store
+.playwright-cli/
+proxy_pool.txt
+*.pyc

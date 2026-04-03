@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图书馆找寻系统</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Shelf Address Finder</p>
+          <h1>图书馆馆藏位置查询</h1>
+          <p class="hero-text">
+            查询单本书或多本书时，系统会列出每本书在所选广州图书馆馆别下的全部位置、可借总量和所有排架号。
+          </p>
+        </div>
+      </header>
+
+      <main class="content-grid">
+        <section class="panel search-panel">
+          <div class="panel-heading">
+            <h2>查询条件</h2>
+            <p>先选馆别，再输入书名或作者。作者可以单独查询；模糊查询默认关闭，需要时再手动打开。</p>
+          </div>
+
+          <label class="input-label" for="library-select">广州图书馆馆别</label>
+          <select id="library-select" class="library-select"></select>
+
+          <label class="input-label" for="author-input">作者关键词</label>
+          <input
+            id="author-input"
+            class="text-input"
+            type="text"
+            placeholder="可单独输入作者姓名，也可与书名一起缩小结果"
+            autocomplete="off"
+          />
+
+          <label class="toggle-row" for="fuzzy-toggle">
+            <span>
+              <strong>模糊查询</strong>
+              <small>关闭时优先只匹配真正同名书；打开后可匹配半截标题和近似标题。</small>
+            </span>
+            <input id="fuzzy-toggle" type="checkbox" />
+          </label>
+
+          <label class="input-label" for="book-entry">书名列表</label>
+          <div class="book-entry-shell" id="book-entry-shell">
+            <div id="book-chip-list" class="book-chip-list"></div>
+            <input
+              id="book-entry"
+              class="book-entry-input"
+              type="text"
+              placeholder="输入一本书名后按 Enter、逗号或顿号继续下一本"
+              autocomplete="off"
+            />
+          </div>
+          <p class="input-help">按 Enter、逗号、顿号可自动分隔，粘贴多本书名也会自动拆分。</p>
+
+          <div class="example-row">
+            <button class="ghost-button" data-example="novels" type="button">文学示例</button>
+            <button class="ghost-button" data-example="mixed" type="button">混合示例</button>
+            <button class="ghost-button" data-example="tech" type="button">技术示例</button>
+          </div>
+
+          <button class="primary-button search-action" id="search-button" type="button">查询馆藏位置</button>
+
+          <section class="recommend-section" aria-labelledby="recommend-heading">
+            <div class="recommend-head">
+              <div>
+                <h3 id="recommend-heading">推荐图书</h3>
+                <p>点一本就会直接查询这本书的馆藏位置；这组推荐书会持续轮换显示。</p>
+              </div>
+              <button class="ghost-button compact-button" id="refresh-recommendations" type="button">换一批</button>
+            </div>
+            <div id="recommendation-list" class="recommendation-list">
+              <p class="empty-state">正在载入推荐图书。</p>
+            </div>
+          </section>
+        </section>
+
+        <section class="panel summary-panel">
+          <div class="panel-heading">
+            <h2>查询结果</h2>
+            <p id="summary-text">等待输入书名后开始查询。</p>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <span class="stat-label">匹配书籍</span>
+              <strong class="stat-value" id="found-count">0</strong>
+            </article>
+            <article class="stat-card">
+              <span class="stat-label">全部位置</span>
+              <strong class="stat-value" id="holding-count">0</strong>
+            </article>
+            <article class="stat-card">
+              <span class="stat-label">可借总量</span>
+              <strong class="stat-value" id="loanable-count">0</strong>
+            </article>
+          </div>
+
+          <div class="inline-results">
+            <div class="inline-results-head">
+              <h3>图书馆馆藏位置查询</h3>
+              <p>当前所选馆别中的排架号会直接显示在查询结果下方；同一本书有多个位置时，会在地址后面继续顺延罗列。</p>
+            </div>
+
+            <div id="results-list" class="results-list">
+              <p class="empty-state">暂无查询结果。</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <p class="source-note page-source-note" id="source-note">等待查询广州图书馆联合目录。</p>
+      <p class="footer-note">本工具仅作为信息索引助手，数据来源于广州图书馆公开查询系统，查询结果以官方为准。</p>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
