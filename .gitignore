@@ -1,0 +1,12 @@
+data/
+!data/.gitkeep
+__pycache__/
+.DS_Store
+.playwright-cli/
+proxy_pool.txt
+*.pyc
+*.sqlite3
+*.log
+.env
+.env.*
+release/
