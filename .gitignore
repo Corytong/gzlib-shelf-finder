@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 data/
 !data/.gitkeep
+=======
+data/catalog_cache.sqlite3
+>>>>>>> 17b75be1e64d885656db31d3655cf48cdeed0441
 __pycache__/
 .DS_Store
 .playwright-cli/
 proxy_pool.txt
 *.pyc
+<<<<<<< HEAD
 *.sqlite3
 *.log
 .env
 .env.*
 release/
+=======
+>>>>>>> 17b75be1e64d885656db31d3655cf48cdeed0441

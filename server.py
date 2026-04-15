@@ -14,7 +14,11 @@ from http.cookiejar import CookieJar
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
+<<<<<<< HEAD
 HOST = os.environ.get("HOST", "0.0.0.0")
+=======
+HOST = "127.0.0.1"
+>>>>>>> 17b75be1e64d885656db31d3655cf48cdeed0441
 PORT = int(os.environ.get("PORT", "8011"))
 ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data"
@@ -444,11 +448,15 @@ def rank_candidates(query, candidates, options, search_way="title"):
         elif options.get("fuzzy"):
             title_score = build_title_match_score(normalized_query, normalized_title)
         else:
+<<<<<<< HEAD
             title_score = build_strict_title_score(
                 normalized_query,
                 normalized_title,
                 candidate.get("title", ""),
             )
+=======
+            title_score = build_strict_title_score(normalized_query, normalized_title)
+>>>>>>> 17b75be1e64d885656db31d3655cf48cdeed0441
 
         if search_way != "author" and title_score < 0:
             continue
@@ -1009,13 +1017,18 @@ def build_search_variants(query):
     return variants
 
 
+<<<<<<< HEAD
 def build_strict_title_score(normalized_query, normalized_title, raw_title=""):
+=======
+def build_strict_title_score(normalized_query, normalized_title):
+>>>>>>> 17b75be1e64d885656db31d3655cf48cdeed0441
     if not normalized_query or not normalized_title:
         return -1
     if normalized_title == normalized_query:
         return 320
     if is_exactish_match(normalized_query, normalized_title):
         return 260
+<<<<<<< HEAD
     for segment in extract_primary_title_segments(raw_title):
         normalized_segment = simplify_title(segment)
         if not normalized_segment:
@@ -1024,6 +1037,8 @@ def build_strict_title_score(normalized_query, normalized_title, raw_title=""):
             return 300
         if is_exactish_match(normalized_query, normalized_segment):
             return 250
+=======
+>>>>>>> 17b75be1e64d885656db31d3655cf48cdeed0441
     return -1
 
 
@@ -1036,6 +1051,7 @@ def is_exactish_match(query, title):
     return not remainder or bool(re.match(r"^[0-9a-z版卷册集上下修订增订精藏译注校注]", remainder, re.I))
 
 
+<<<<<<< HEAD
 def extract_primary_title_segments(raw_title):
     raw = normalize_search_text(raw_title)
     if not raw:
@@ -1057,6 +1073,8 @@ def extract_primary_title_segments(raw_title):
     return segments
 
 
+=======
+>>>>>>> 17b75be1e64d885656db31d3655cf48cdeed0441
 def build_author_match_score(normalized_query, normalized_author):
     if not normalized_query:
         return 0
@@ -1311,8 +1329,12 @@ class AppHandler(BaseHTTPRequestHandler):
 def main():
     init_db()
     server = ThreadingHTTPServer((HOST, PORT), AppHandler)
+<<<<<<< HEAD
     display_host = "127.0.0.1" if HOST in {"0.0.0.0", ""} else HOST
     print(f"Library route server running at http://{display_host}:{PORT}", flush=True)
+=======
+    print(f"Library route server running at http://{HOST}:{PORT}")
+>>>>>>> 17b75be1e64d885656db31d3655cf48cdeed0441
     server.serve_forever()
 
 

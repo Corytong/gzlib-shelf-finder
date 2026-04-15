@@ -1,6 +1,10 @@
 {
   "name": "gzlib-route-planner",
   "version": "1.0.0",
+<<<<<<< HEAD
+=======
+  "private": true,
+>>>>>>> 17b75be1e64d885656db31d3655cf48cdeed0441
   "description": "广州图书馆找书与路线规划原型",
   "scripts": {
     "start": "python3 server.py"

@@ -1,1 +1,16 @@
+<<<<<<< HEAD
 # This app uses only the Python standard library.
+=======
+# GZLib Shelf Finder dependencies
+#
+# Toolchain (not installed via pip):
+#   - Node.js LTS (>=18, recommended 20) and npm
+#   - Python >=3.10
+#   - SQLite3 (bundled with Python standard library)
+#
+# Python pip packages:
+#   - none required currently (server uses only Python standard library)
+#
+# This file exists to keep install scripts stable and to allow adding pip
+# dependencies later without breaking automation.
+>>>>>>> 17b75be1e64d885656db31d3655cf48cdeed0441
